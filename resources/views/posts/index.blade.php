@@ -29,6 +29,7 @@
                     <th>title</th>
                     <th>description</th>
                     <th>writer</th>
+                    <th>show</th>
                     <th>edit</th>
                     <th>delete</th>
                 </tr>
@@ -40,6 +41,9 @@
                         <td>{{ $post['title'] }}</td>
                         <td>{{ \Str::limit($post->description,50)}}</td>
                         <td>{{ $post->user->name }}</td>
+                        <td>
+                            <a href="{{url('posts/'.$post->id)}}" class="btn btn-primary">show</a>
+                        </td>
                         <td>
                             <a href="{{ url('posts/' . $post->id . '/edit') }}" class="btn btn-info">edit</a>
                         </td>

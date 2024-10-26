@@ -33,7 +33,7 @@ class postsController extends Controller
 
     public function create()
     {
-        $users=User::all();
+        $users=User::orderBy('id','desc')->get();
         return view('posts.add',['users'=>$users]);
     }
     public function edit($id)

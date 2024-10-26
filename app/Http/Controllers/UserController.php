@@ -46,9 +46,10 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function posts(string $id)
     {
-        //
+        $user=User::findOrFail($id);
+        return view("users.posts",compact("user"));
     }
 
     /**
