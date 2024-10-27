@@ -29,7 +29,7 @@
                     <th>title</th>
                     <th>description</th>
                     <th>writer</th>
-                    <th>show</th>
+                    <th>image</th>
                     <th>edit</th>
                     <th>delete</th>
                 </tr>
@@ -42,7 +42,7 @@
                         <td>{{ \Str::limit($post->description,50)}}</td>
                         <td>{{ $post->user->name }}</td>
                         <td>
-                            <a href="{{url('posts/'.$post->id)}}" class="btn btn-primary">show</a>
+                            <img width="100px" height="100px" src="{{$post->image()}}" alt="Uploaded Image">
                         </td>
                         <td>
                             <a href="{{ url('posts/' . $post->id . '/edit') }}" class="btn btn-info">edit</a>

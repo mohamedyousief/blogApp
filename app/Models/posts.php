@@ -12,4 +12,11 @@ class posts extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+    public function image(){
+        if ($this->image){
+            return asset('storage/' . $this->image);
+        }else{
+            return asset('defult.png');
+        }
+    }
 }

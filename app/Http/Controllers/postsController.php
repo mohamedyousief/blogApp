@@ -44,10 +44,20 @@ class postsController extends Controller
     }
     public function update($id,Request $R)
     {
+
         $posts=posts::findOrFail($id);
+
+        if($R->file('image')){
+            $image=$R->file('image')->store('images', 'public');
+        }else{
+            $image=$posts->image;
+        }
+        
+
         $posts->title=$R->title;
         $posts->description=$R->description;
         $posts->user_id=$R->user_id;
+        $posts->image=$image;
         $posts->save();
         return redirect('posts')->with('success','post with id '.$id.' updated successfully');
         // return view('posts.edit',['post'=>$post]);
@@ -59,11 +69,17 @@ class postsController extends Controller
             'title' => ['required', 'string','min:3'],
             'description' => ['required', 'string', 'max:1400'],
             'user_id' => ['required', 'exists:users,id'],
+            "image"=>['required','image','mimes:png,jpg,jpeg,gif,webp']
         ]);
+
+        $image=$R->file('image')->store('images', 'public');
+
+
         $posts=new posts();
         $posts->title=$R->title;
         $posts->description=$R->description;
         $posts->user_id=$R->user_id;
+        $posts->image=$image;
         $posts->save();
         return back()->with('success','post added successfully'); 
         

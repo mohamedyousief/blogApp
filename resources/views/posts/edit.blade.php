@@ -5,7 +5,7 @@
         <h1 class="p-3 text-center my-3">Add New Post</h1>
     </div>
     <div class="col-8 mx-auto border p-3">
-        <form action="{{ url('posts/' . $post->id) }}" class="form" method="post">
+        <form action="{{ url('posts/' . $post->id) }}" class="form" method="post" enctype="multipart/form-data">
             <div class="mb-3">
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -35,6 +35,10 @@
                         <option value="{{$user->id}}">{{$user->name}}</option>
                     @endforeach
                 </select>
+            </div>
+            <div class="mb-3">
+                <label for="">post image</label>
+                <input type="file" name="image" class="form-control">
             </div>
             <div class="mb-3">
                 <input type="submit" class="btn btn-success" value="Add Post">
