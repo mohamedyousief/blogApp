@@ -34,13 +34,26 @@ class UserController extends Controller
         $data = $request->validate([
             'name' => ['required', 'string', 'min:2', 'max:100'],
             'email' => ['required', 'email', 'unique:users,email'],
+            'image' => ['required', 'image', 'mimes:png,jpg,jpeg,gif,webp'],
             'password' => ['required', 'string', 'min:6', 'max:30'],
             'confirm_password' => ['required', 'string', 'min:6', 'max:30', 'same:password'],
             'type' => ['required', 'in:admin,writer'],
         ]);
-        unset($data->confirm_password);
+
+        // Store the uploaded image in 'storage/app/public/usersImages'
+        $image = $request->file('image')->store('usersImages', 'public');
+        $data['image'] = $image;
+        // Remove confirm_password from $data as it's not a database field
+        unset($data['confirm_password']);
+
+        // Hash the password before storing
+        $data['password'] = bcrypt($data['password']);
+
+        // Create the user
+        
         User::create($data);
-        return back()->with('success', 'user added successfully');
+
+        return back()->with('success', 'User added successfully');
     }
 
     /**
@@ -48,8 +61,8 @@ class UserController extends Controller
      */
     public function posts(string $id)
     {
-        $user=User::findOrFail($id);
-        return view("users.posts",compact("user"));
+        $user = User::findOrFail($id);
+        return view("users.posts", compact("user"));
     }
 
     /**

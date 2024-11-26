@@ -26,6 +26,7 @@
                     <th>#</th>
                     <th>name</th>
                     <th>email</th>
+                    <th>image</th>
                     <th>type</th>
                     <th>posts</th>
                     <th>edit</th>
@@ -38,7 +39,9 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
+                        <td><img src="{{ $user->image() }}" alt="" width="80px" height="80px"></td>
                         <td ><span class="{{$user->type=="admin" ? "bg-success" : "bg-warning"}} text-light p-1 rounded-4">{{ $user->type }}</span></td>
+                       
                         <td>
                             <a href="{{ route('user.posts' , $user->id ) }}" class="btn btn-primary">view</a>
                         </td>

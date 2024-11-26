@@ -23,6 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
         'type',
+        'image',
     ];
 
     /**
@@ -50,5 +51,13 @@ class User extends Authenticatable
 
     public function posts(){
         return $this->hasMany(posts::class);
+    }
+
+    public function image(){
+        if ($this->image){
+            return asset('storage/' . $this->image);
+        }else{
+            return asset('def1.png');
+        }
     }
 }

@@ -5,7 +5,7 @@
         <h1 class="p-3 text-center my-3">Add New user</h1>
     </div>
     <div class="col-8 mx-auto border p-3">
-        <form action="{{ route('users.store') }}" class="form" method="POST">
+        <form action="{{ route('users.store') }}" class="form" method="POST" enctype="multipart/form-data">
             <div class="mb-3">
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -43,6 +43,10 @@
                     <option value="admin">admin</option>
                     <option value="writer">writer</option>
                 </select>
+            </div>
+            <div class="mb-3">
+                <label for="">post image</label>
+                <input type="file" name="image" class="form-control">
             </div>
             <div class="mb-3">
                 <input type="submit" class="btn btn-success" value="Add user">

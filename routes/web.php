@@ -21,3 +21,4 @@ Route::get('posts/{id}',[postsController::class,'show']);
 
 Route::resource('users',UserController::class);
 Route::get("user/{Id}/posts",[UserController::class,"posts"])->name("user.posts");
+Route::resource('tags',TagController::class);

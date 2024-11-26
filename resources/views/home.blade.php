@@ -7,7 +7,10 @@
     <div class="col-12">
         @foreach ($posts as $post)
             <div class="card mb-3">
-                <h5 class="card-header">{{$post->user->name }} - {{$post->created_at->format('y / m / d')}}</h5>
+                <div class="card-header d-flex justify-content-between" >
+                    <h3>{{$post->user->name}} - {{$post->created_at->format("d / m / y")}}</h3>
+                    <img src="{{$post->user->image()}} " width="50px" height="50px" alt="">
+                </div>
                 <div class="card-body">
                     <img src="{{$post->image()}}" alt="" width="100%" >
                     <h5 class="card-title">{{$post->title}}</h5>
